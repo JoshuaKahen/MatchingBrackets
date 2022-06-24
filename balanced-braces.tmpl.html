@@ -1,16 +1,12 @@
 <!--put an html template for your balanced braces directive here-->
 <html>
     <div ng-controller="Controller">
-    Input the String: <input type="text">
-    <button ng-click="myFunc()">
+    Input the String: <input type="text" ng-change="changeFace()" ng-model="words">
+    <button ng-click="myFunc(words)">
       Check
     </button>
-    <button ng-click="count=0">
-      UnCheck
-    </button>
-    <h4>This String is {{count}}</h4>
+    <h4>{{count}}</h4>
     
-
     </div>
 
 </html>
