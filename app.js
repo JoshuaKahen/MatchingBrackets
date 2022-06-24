@@ -1,10 +1,55 @@
 //this is defining the app module and the balancedBracecesTest directive within that module
 angular.module('app', [])
 .controller('Controller', ['$scope', function($scope) {
-  $scope.count = 0;
-    $scope.myFunc = function() {
-		//This is where the function that evaluates the string is going to go
-      $scope.count++;
+  $scope.count = "";
+    $scope.myFunc = function(bracesArr) {
+      
+        let stack = [];
+        let counter = 0;
+  
+        for(let i = 0; i < bracesArr.length; i++)
+        {
+            let x = bracesArr[i];
+  
+            if (x == '(' || x == '[' || x == '{')
+            {
+              
+                stack.push(x);
+                counter = counter + 1;
+                continue;
+            }
+              
+            let check;
+            switch (x){
+            case ')':
+                check = stack.pop();
+                counter = counter - 1;
+                if (check == '{' || check == '[')
+                    $scope.count = "This is not balanced";
+                break;
+  
+            case '}':
+                check = stack.pop();
+                counter = counter - 1;
+                if (check == '(' || check == '[')
+                    $scope.count = "This is not balanced";
+                break;
+  
+            case ']':
+                check = stack.pop();
+                counter = counter - 1;
+                if (check == '(' || check == '{')
+                    $scope.count = "This is not balanced";
+                break;
+            }
+        }
+        if ((stack.length == 0) && (counter == 0))
+            $scope.count = "This is balanced";
+        else
+            $scope.count = "This is not balanced";
+    };
+    $scope.changeFace = function() {
+        $scope.count = "";
     };
   
 }])
@@ -15,5 +60,3 @@ angular.module('app', [])
 		templateUrl: 'balanced-braces.tmpl.html'
 	};
 });
-
-
