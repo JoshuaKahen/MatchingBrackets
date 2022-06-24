@@ -24,22 +24,25 @@ angular.module('app', [])
             case ')':
                 check = stack.pop();
                 counter = counter - 1;
-                if (check == '{' || check == '[')
+                if (check == '{' || check == '['){
                     $scope.count = "This is not balanced";
+			return;}
                 break;
   
             case '}':
                 check = stack.pop();
                 counter = counter - 1;
-                if (check == '(' || check == '[')
+                if (check == '(' || check == '['){
                     $scope.count = "This is not balanced";
+			return;}
                 break;
   
             case ']':
                 check = stack.pop();
                 counter = counter - 1;
-                if (check == '(' || check == '{')
+                if (check == '(' || check == '{'){
                     $scope.count = "This is not balanced";
+			return;}
                 break;
             }
         }
