@@ -1,1 +1,60 @@
 /* Put any needed css here */
+
+div.row {
+  padding: 60px;
+}
+
+body {
+  background-color: #003b4e;
+}
+
+#title {
+	color: #4cd8ff;
+	font-family: 'Helvetica Neue', sans-serif;
+	font-size: 105px;
+	font-weight: bold;
+	letter-spacing: -1px; 
+}
+
+#texting {
+	text-align: center ;
+}
+
+#result {
+	color: #111;
+	font-family: 'Raleway',sans-serif;
+	font-size: 50px;
+	font-weight: 800;
+	line-height: 72px;
+	text-transform: uppercase;
+}
+
+/* Makes checkbox list not have any bullet points*/
+.checkbox-inline {
+	list-style: none;
+}
+
+/* Makes each checkbox look big and spread evenly */
+li {
+	margin-left: 80px;
+	margin-right: 80px;
+	font-family: 'Arial',sans-serif;
+	font-size: 20px;
+	color: #ff0c0c;
+}
+
+/* Makes each checkbox transform when clicked on */
+input:checked + span {
+  color: #6fff6f;	
+  text-transform: uppercase;
+
+}
+
+/* Removes the physical checkbox that also works but looks/acts unnecessary next to new checkbox */
+input[type='checkbox']{
+	display: none;
+}
+
+label{
+	cursor: pointer;
+}
