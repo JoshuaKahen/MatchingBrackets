@@ -1,12 +1,16 @@
 <!--put an html template for your balanced braces directive here-->
 <html>
+
     <div ng-controller="Controller">
     Input the String: <input type="text" ng-change="changeFace()" ng-model="words">
-    <button ng-click="myFunc(words)">
-      Check
-    </button>
+    <input type="button" value="Submit" ng-click="myFunc(words)">
+
     <h4>{{count}}</h4>
-    
+     
+    <ul ng-repeat='user in brack'>
+      <li><input type='checkbox' value='{{ user.value }}' ng-model='user.selected'> {{user.name}}</li>
+    </ul>
+ 
     </div>
 
 </html>
