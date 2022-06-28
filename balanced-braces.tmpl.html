@@ -1,16 +1,32 @@
 <!--put an html template for your balanced braces directive here-->
 <html>
+    <body>
+        <div ng-controller="Controller" class="container text-center">
 
-    <div ng-controller="Controller">
-    Input the String: <input type="text" ng-change="changeFace()" ng-model="words">
-    <input type="button" value="Submit" ng-click="myFunc(words)">
+            <div>
+                <h1 id="title">Bracket Balance:</h1>
+            </div> 
 
-    <h4>{{count}}</h4>
-     
-    <ul ng-repeat='user in brack'>
-      <li><input type='checkbox' value='{{ user.value }}' ng-model='user.selected'> {{user.name}}</li>
-    </ul>
- 
-    </div>
+            
+            <div class="row">
+                <input type="text" ng-change="changeFace()" ng-model="words" class="form-control input-lg" id='texting'>
+                <input type="button" value="Submit" ng-click="myFunc(words)" class="btn btn-primary btn-lg btn-block">
+        
+            </div>
+            <div class="row">
+           
+                <ul ng-repeat='brack in bracks' class="checkbox-inline">
+                
+                  <li><label><input type='checkbox' value='{{brack.value}}' ng-model='brack.selected'
+                  ng-init='brack.selected=true'><span>
+                  {{brack.name}}</span></label></li>
+                </ul>
+            </div>
+            <div class="row bg-warning">
+                <h4 id="result">{{result}}</h4>
+            </div>
 
+
+        </div>
+    </body>
 </html>
