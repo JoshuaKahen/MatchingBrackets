@@ -7,16 +7,17 @@
                 <h1 id="title">Bracket Balance:</h1>
             </div> 
 
-            
+            <!--Input for string to be evaluated and button that when clicked on activates function-->
             <div class="row">
-                <input type="text" ng-change="changeFace()" ng-model="words" class="form-control input-lg" id='texting'>
+                <input type="text" ng-change="changeFace()" ng-model="words" class="form-control input-lg" id='texting'
+                ng-init='words="({[Please enter a string into the input. Parenthesis can be toggled by clicking on them.]})"' >
                 <input type="button" value="Submit" ng-click="myFunc(words)" class="btn btn-primary btn-lg btn-block">
         
             </div>
             <div class="row">
-           
+            <!--Use of ng-repeat that takes in brackets and makes sure that they are all displayed without need to repeat code-->
                 <ul ng-repeat='brack in bracks' class="checkbox-inline">
-                
+                <!--Label makes the words clickable which eliminates the use of a checkbox-->
                   <li><label><input type='checkbox' value='{{brack.value}}' ng-model='brack.selected'
                   ng-init='brack.selected=true'><span>
                   {{brack.name}}</span></label></li>
