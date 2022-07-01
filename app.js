@@ -1,23 +1,15 @@
-//this is defining the app module and the balancedBracecesTest directive within that module
-angular.module('app', [])
-.controller('Controller', ['$scope', function($scope) {
-  
-  $scope.result = " ";
-  
-  $scope.count = [];
-  
-  $scope.bracks = [
-     { id: 1, value: '[]', name: '[square]'}, 
-     { id: 2, value: '{}', name: '{curly}'}, 
-     { id: 3, value: '()', name: '(normal)'}, 
-    ];
-    //this is defining the app module and the balancedBracecesTest directive within that module
 angular.module('app', [])
 .controller('Controller', ['$scope', function($scope) {
   // result is used for the String that will be evaluated
   $scope.result = " ";
   // count is for the parenthesis that are being used
   $scope.count = [];
+  // customer is for the custom parenthesis that are being used
+  $scope.customer = "";
+  $scope.frontCus = "";
+  $scope.backCus = "";
+  $scope.customModel;
+
   // this group contains all the parenthesis that can be used
   $scope.bracks = [
      { id: 1, value: '[]', name: '[square]'}, 
@@ -34,12 +26,24 @@ angular.module('app', [])
         const frontMap = new Map();
         const backMap = new Map();
 
+
         // maps are created front-to-back and back-to-front 
         for(let i = 0; i < tempGroup.length ; i++){
             frontMap.set(tempGroup[i][0], tempGroup[i][1]);
             backMap.set(tempGroup[i][1], tempGroup[i][0]);
         }
         
+        if ($scope.customModel.selected){
+            if (!($scope.checkCus(frontMap, backMap))){
+                $scope.result = "Custom parenthesis cannot be the same, already used, or blank";
+                return;
+            }
+            frontMap.set($scope.frontCus, $scope.backCus);
+            backMap.set($scope.backCus, $scope.frontCus);
+                    
+        }
+
+
         // stack is used to check if the parenthesis match each other
         let stack = [];
 
@@ -102,6 +106,17 @@ angular.module('app', [])
           }
         });
    }
+   $scope.checkCus = function(frontMap, backMap) {
+        if (frontMap.get($scope.frontCus) != null || backMap.get($scope.frontCus) != null || $scope.frontCus == " " || $scope.frontCus == ""){
+            return false;}
+        else if (backMap.get($scope.backCus) != null || frontMap.get($scope.backCus) != null || $scope.backCus == " " || $scope.backCus == ""){
+            return false;}
+        else if ($scope.frontCus == $scope.backCus){
+            return false}
+
+        return true;
+    };
+
  
   
 }])
@@ -114,84 +129,4 @@ angular.module('app', [])
 });
 
 
-
-    $scope.myFunc = function(bracesArr) {
-        
-        $scope.checkVal();
-        let tempGroup = $scope.count;
-        const frontMap = new Map();
-        const backMap = new Map();
-        
-        for(let i = 0; i < tempGroup.length ; i++){
-            frontMap.set(tempGroup[i][0], tempGroup[i][1]);
-            backMap.set(tempGroup[i][1], tempGroup[i][0]);
-        }
-        
-        let stack = [];
-
-        if (frontMap.size == 0){
-            $scope.result = "Please check a box";
-            return;
-        }
-
-        
-        if((bracesArr == null) || (bracesArr == "")){
-            $scope.result = "Please enter a String";
-            return;
-        }
-
-        
-        for(let i = 0; i < bracesArr.length; i++)
-        {
-            let x = bracesArr[i];
-  
-            if (frontMap.get(x) != null)
-            {
-                stack.push(x);
-                continue;
-            }
-            
-            let check;
-            
-            if(backMap.get(x) != null){
-                check = stack.pop();
-                
-                if (check != backMap.get(x)){
-                    $scope.result = "This is not balanced";
-                    return;
-                }
-            }
-        }
-
-        if ((stack.length == 0))
-            $scope.result = "This is balanced";
-        else
-            $scope.result = "This is not balanced";
-    };
-    
-    $scope.changeFace = function() {
-        $scope.result = " ";
-    };
-
-    $scope.checkVal = function(){
-        $scope.count = [];
-        var checkedUsers = '';
-        $scope.bracks.forEach(function(brack) {
-
-          if (brack.selected) {
-            vals = [brack.value[0], brack.value[1]]
-            $scope.count.push(vals);
-          }
-        });
-   }
- 
-  
-}])
-.directive('balancedBracesTest', function () {
-	return {
-		restrict: 'E',
-		scope: false,
-		templateUrl: 'balanced-braces.tmpl.html'
-	};
-});
 
