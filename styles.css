@@ -1,5 +1,3 @@
-/* Put any needed css here */
-
 div.row {
   padding: 60px;
 }
@@ -41,6 +39,21 @@ li {
 	font-family: 'Arial',sans-serif;
 	font-size: 20px;
 	color: #ff0c0c;
+}
+
+#customID{
+	margin-top: 40px;
+	font-family: 'Arial',sans-serif;
+	font-size: 20px;
+	color: #ff0c0c;
+}
+
+.smallBox {
+	text-align: center ;
+	width: 25px;
+	height: 25px;
+	background-color: #003b4e;
+	color: #f1f1f1;
 }
 
 /* Makes each checkbox transform when clicked on */
