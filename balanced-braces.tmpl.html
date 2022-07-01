@@ -1,4 +1,3 @@
-<!--put an html template for your balanced braces directive here-->
 <html>
     <body>
         <div ng-controller="Controller" class="container text-center">
@@ -15,13 +14,24 @@
         
             </div>
             <div class="row">
-            <!--Use of ng-repeat that takes in brackets and makes sure that they are all displayed without need to repeat code-->
-                <ul ng-repeat='brack in bracks' class="checkbox-inline">
-                <!--Label makes the words clickable which eliminates the use of a checkbox-->
-                  <li><label><input type='checkbox' value='{{brack.value}}' ng-model='brack.selected'
-                  ng-init='brack.selected=true'><span>
-                  {{brack.name}}</span></label></li>
-                </ul>
+
+                <div>
+                <!--Use of ng-repeat that takes in brackets and makes sure that they are all displayed without need to repeat code-->
+                    <ul ng-repeat='brack in bracks' class="checkbox-inline">
+                    <!--Label makes the words clickable which eliminates the use of a checkbox-->
+                      <li><label><input type='checkbox' value='{{brack.value}}' ng-model='brack.selected'
+                      ng-init='brack.selected=true'><span>
+                      {{brack.name}}</span></label></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <input type="text" ng-model="frontCus" maxlength="1" size="1" class="smallBox">
+                    <label id="customID"><input type='checkbox' ng-model='customModel.selected' ng-init='customModel.selected=false'>
+                    <span>custom</span></label>
+                    <input type="text" ng-model="backCus" maxlength="1" size="1" class="smallBox">
+                </div>
+
             </div>
             <div class="row bg-warning">
                 <h4 id="result">{{result}}</h4>
